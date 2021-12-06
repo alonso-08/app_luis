@@ -84,10 +84,10 @@ app.use(cors())
 
 app.use((req, res, next) => {
   req.mysqlDb = mysql.createConnection({
-    host: '127.0.0.1',
-    user: 'root',
-    password: '',
-    database: 'db_alonso'
+    host: 'us-cdbr-east-04.cleardb.com',
+    user: 'b0785817b57ce9',
+    password: 'd9dddeb8',
+    database: 'heroku_7662354e71f5b0b'
   });
   req.mysqlDb.connect();
   next();
