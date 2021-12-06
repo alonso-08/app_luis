@@ -5,7 +5,7 @@ const cors = require("cors")
 const mysql = require('mysql');
 const jwt = require('./jwtConfig')
 const bcrypt = require("bcrypt");
-
+const mysqlconection = require('./database');
 
 const schema = buildSchema(`
   type Employee {    
@@ -43,7 +43,7 @@ const schema = buildSchema(`
 `);
 
 const queryDB = (req, sql, args) => new Promise((resolve, reject) => {
-  req.mysqlDb.query(sql, args, (err, rows) => {
+  mysqlconection.query(sql, args, (err, rows) => {
     if (err)
       return reject(err);
     rows.changedRows || rows.affectedRows || rows.insertId ? resolve(true) : resolve(rows);
@@ -82,16 +82,7 @@ const rootPublic = {
 var app = express();
 app.use(cors())
 
-app.use((req, res, next) => {
-  req.mysqlDb = mysql.createConnection({
-    host: 'us-cdbr-east-04.cleardb.com',
-    user: 'b0785817b57ce9',
-    password: 'd9dddeb8',
-    database: 'heroku_7662354e71f5b0b'
-  });
-  req.mysqlDb.connect();
-  next();
-});
+
 
 app.use('/public', graphqlHTTP({
   schema: schema,
