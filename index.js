@@ -95,7 +95,7 @@ app.use('/graphql', jwt.authenticationsJWT, graphqlHTTP({
   graphiql: true,
 }));
 
-app.use(express.static(__dirname +'/public'))
+
 
 app.listen(process.env.PORT || 8080, () => console.log('Now browse to localhost:8080/graphql'));
 
