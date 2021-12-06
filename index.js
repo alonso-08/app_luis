@@ -88,7 +88,7 @@ app.use('/public', graphqlHTTP({
   schema: schema,
   rootValue: rootPublic,
 }));
-
+app.use(express.static("./public"))
 app.use('/graphql', jwt.authenticationsJWT, graphqlHTTP({
   schema: schema,
   rootValue: root,
