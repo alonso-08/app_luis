@@ -97,5 +97,5 @@ app.use('/graphql', jwt.authenticationsJWT, graphqlHTTP({
 
 
 
-app.listen(process.env.PORT || 8080, () => console.log('Now browse to localhost:8080/graphql'));
+app.listen(process.env.PORT || 80, () => console.log('Now browse to localhost:8080/graphql'));
 
